@@ -1,0 +1,36 @@
+{
+    "name": "daisyui-svelte",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "watch:sass": "sass ./src/components:./src/components --no-source-map --watch",
+        "build:sass": "sass ./src/components:./src/components --no-source-map",
+        "watch:postcss": "postcss ./src/components/**/*.css --base ./src/components --dir ./src/components --watch",
+        "build:postcss": "postcss ./src/components/**/*.css --base ./src/components --dir ./src/components",
+        "watch": "pnpm run watch:sass && pnpm run watch:postcss",
+        "build": "pnpm run build:sass && pnpm run build:postcss"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/eztrip-trip-planner/daisyui-svelte.git"
+    },
+    "author": "5exyGuy",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/eztrip-trip-planner/daisyui-svelte/issues"
+    },
+    "homepage": "https://github.com/eztrip-trip-planner/daisyui-svelte#readme",
+    "devDependencies": {
+        "@tsconfig/svelte": "^3.0.0",
+        "autoprefixer": "^10.4.4",
+        "postcss": "^8.4.12",
+        "sass": "^1.49.9",
+        "tailwindcss": "^3.0.23"
+    },
+    "dependencies": {
+        "colord": "^2.9.2",
+        "esbuild": "^0.14.28",
+        "svelte": "^3.46.4"
+    }
+}
