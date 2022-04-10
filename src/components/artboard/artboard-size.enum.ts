@@ -1,4 +1,4 @@
-import { EnumKeysAsString } from '../../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum ArtboardSize {
     Phone1 = 'phone-1',
@@ -9,4 +9,4 @@ export enum ArtboardSize {
     Phone6 = 'phone-6',
 }
 
-export type ArtboardSizeKey = EnumKeysAsString<typeof ArtboardSize>;
+export type ArtboardSizeKey = StringKeyOf<typeof ArtboardSize>;

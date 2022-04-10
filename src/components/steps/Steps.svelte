@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Alignment, AlignmentKey } from '../../utils/alignment.enum';
+    import { Alignment, type AlignmentKey } from '$enums/alignment.enum';
 
     // Props
     export let alignment: AlignmentKey = 'Horizontal';

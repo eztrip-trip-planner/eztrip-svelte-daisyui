@@ -1,4 +1,4 @@
-import { EnumKeysAsString } from '../../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum MaskType {
     Squircle = 'squircle',
@@ -22,4 +22,4 @@ export enum MaskType {
     Triangle4 = 'triangle-4',
 }
 
-export type MaskTypeKey = EnumKeysAsString<typeof MaskType>;
+export type MaskTypeKey = StringKeyOf<typeof MaskType>;

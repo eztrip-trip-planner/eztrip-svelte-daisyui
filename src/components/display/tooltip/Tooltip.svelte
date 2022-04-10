@@ -1,13 +1,18 @@
 <script lang="ts">
-    import { BrandColor, BrandColorKey } from '../../../utils/brand-color.enum';
-    import { FunctionalColor, FunctionalColorKey } from '../../../utils/functional-color.enum';
-    import { Maybe } from '../../../utils/maybe.type';
-    import { Position, PositionKey } from '../../../utils/position.enum';
+    import {
+        BrandColor,
+        FunctionalColor,
+        Position,
+        type BrandColorKey,
+        type FunctionalColorKey,
+        type PositionKey,
+    } from '$enums';
+    import type { Nullable } from '@eztrip/types';
 
     // Props
-    export let forceOpen: Maybe<boolean> = null;
+    export let forceOpen: Nullable<boolean> = null;
     export let position: PositionKey = 'Top';
-    export let type: Maybe<BrandColorKey | FunctionalColorKey> = null;
+    export let type: Nullable<BrandColorKey | FunctionalColorKey> = null;
     let className: string = '';
     export { className as class };
 

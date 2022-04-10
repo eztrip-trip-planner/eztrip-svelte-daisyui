@@ -1,4 +1,4 @@
-import { EnumKeysAsString } from '../../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum TabsType {
     Bordered = 'bordered',
@@ -6,4 +6,4 @@ export enum TabsType {
     Boxed = 'boxed',
 }
 
-export type TabsTypeKey = EnumKeysAsString<typeof TabsType>;
+export type TabsTypeKey = StringKeyOf<typeof TabsType>;

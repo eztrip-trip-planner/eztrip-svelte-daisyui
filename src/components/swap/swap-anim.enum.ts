@@ -1,8 +1,8 @@
-import type { EnumKeysAsString } from '../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum SwapAnim {
     Rotate = 'rotate',
     Flip = 'flip',
 }
 
-export type SwapAnimKey = EnumKeysAsString<typeof SwapAnim>;
+export type SwapAnimKey = StringKeyOf<typeof SwapAnim>;

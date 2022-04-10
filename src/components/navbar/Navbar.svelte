@@ -1,7 +1,12 @@
 <script lang="ts">
-    import { BaseColor, BaseColorKey } from '../../utils/base-color.enum';
-    import { BrandColor, BrandColorKey } from '../../utils/brand-color.enum';
-    import { FunctionalColor, FunctionalColorKey } from '../../utils/functional-color.enum';
+    import {
+        BaseColor,
+        BrandColor,
+        FunctionalColor,
+        type BaseColorKey,
+        type BrandColorKey,
+        type FunctionalColorKey,
+    } from '$enums';
 
     // Props
     export let background: BrandColorKey | FunctionalColorKey | BaseColorKey = 'Base-100';

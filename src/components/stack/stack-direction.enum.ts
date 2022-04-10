@@ -1,4 +1,4 @@
-import { EnumKeysAsString } from '../../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum StackDirection {
     Up = 'up',
@@ -11,4 +11,4 @@ export enum StackDirection {
     DownRight = 'downright',
 }
 
-export type StackDirectionKey = EnumKeysAsString<typeof StackDirection>;
+export type StackDirectionKey = StringKeyOf<typeof StackDirection>;

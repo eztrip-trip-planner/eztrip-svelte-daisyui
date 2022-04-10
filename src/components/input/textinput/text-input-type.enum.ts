@@ -1,5 +1,5 @@
-import { EnumKeysAsString } from '../../../utils/enum-keys-as-string.type';
+import type { StringKeyOf } from '@eztrip/types';
 
 export enum TextInputType {}
 
-export type TextInputTypeKey = EnumKeysAsString<typeof TextInputType>;
+export type TextInputTypeKey = StringKeyOf<typeof TextInputType>;

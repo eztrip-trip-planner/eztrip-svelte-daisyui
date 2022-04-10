@@ -1,11 +1,10 @@
 <script lang="ts">
-    import { AlignmentKey } from '../../utils/alignment.enum';
-    import { BrandColorKey } from '../../utils/brand-color.enum';
-    import { FunctionalColorKey } from '../../utils/functional-color.enum';
-    import { Maybe } from '../../utils/maybe.type';
+    import type { AlignmentKey, BrandColorKey, FunctionalColorKey } from '$enums';
+
+    import type { Nullable } from '@eztrip/types';
 
     // Props
-    export let background: Maybe<BrandColorKey | FunctionalColorKey> = null;
+    export let background: Nullable<BrandColorKey | FunctionalColorKey> = null;
     export let alignment: AlignmentKey = 'Vertical';
     export let compact: boolean = false;
     let className: string = '';

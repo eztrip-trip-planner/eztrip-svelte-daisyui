@@ -1,12 +1,18 @@
 <script lang="ts">
-    import { BrandColor, BrandColorKey } from '../../../utils/brand-color.enum';
-    import { FunctionalColor, FunctionalColorKey } from '../../../utils/functional-color.enum';
-    import { Maybe } from '../../../utils/maybe.type';
-    import { Size, SizeKey } from '../../../utils/size.enum';
+    import {
+        BrandColor,
+        FunctionalColor,
+        Size,
+        type BrandColorKey,
+        type FunctionalColorKey,
+        type SizeKey,
+    } from '$enums';
+
+    import type { Nullable } from '@eztrip/types';
 
     // Props
-    export let type: Maybe<BrandColorKey | FunctionalColorKey> = null;
-    export let size: Maybe<SizeKey> = null;
+    export let type: Nullable<BrandColorKey | FunctionalColorKey> = null;
+    export let size: Nullable<SizeKey> = null;
     export let value: number = 0;
     export let max: number = 100;
     export let min: number = 0;

@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { Alignment } from '../../../utils/alignment.enum';
-    import { BrandColor } from '../../../utils/brand-color.enum';
-    import { EnumKeysAsString } from '../../../utils/enum-keys-as-string.type';
-    import { FunctionalColor } from '../../../utils/functional-color.enum';
-    import { Maybe } from '../../../utils/maybe.type';
+    import {
+        Alignment,
+        BrandColor,
+        FunctionalColor,
+        type AlignmentKey,
+        type BrandColorKey,
+        type FunctionalColorKey,
+    } from '$enums';
+    import type { Nullable } from '@eztrip/types';
 
     // Props
-    export let alignment: EnumKeysAsString<typeof Alignment> = 'Horizontal';
-    export let background: Maybe<EnumKeysAsString<typeof BrandColor & typeof FunctionalColor>> = null;
+    export let alignment: AlignmentKey = 'Horizontal';
+    export let background: Nullable<BrandColorKey | FunctionalColorKey> = null;
     let className: string = '';
     export { className as class };
 

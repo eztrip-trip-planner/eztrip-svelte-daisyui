@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { Maybe } from '../../utils/maybe.type';
-    import { MaskHalfType, MaskHalfTypeKey } from './mask-half-type.enum';
-    import { MaskType, MaskTypeKey } from './mask-type.enum';
+    import type { Nullable } from '@eztrip/types';
+    import { MaskHalfType, type MaskHalfTypeKey } from './mask-half-type.enum';
+    import { MaskType, type MaskTypeKey } from './mask-type.enum';
 
     // Props
-    export let half: Maybe<MaskHalfTypeKey> = null;
+    export let half: Nullable<MaskHalfTypeKey> = null;
     export let type: MaskTypeKey = 'Circle';
     let className: string = '';
     export { className as class };

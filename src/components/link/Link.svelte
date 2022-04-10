@@ -1,11 +1,10 @@
 <script lang="ts">
-    import { BrandColor, BrandColorKey } from '../../utils/brand-color.enum';
-    import { FunctionalColor, FunctionalColorKey } from '../../utils/functional-color.enum';
-    import { Maybe } from '../../utils/maybe.type';
+    import { BrandColor, FunctionalColor, type BrandColorKey, type FunctionalColorKey } from '$enums';
+    import type { Nullable } from '@eztrip/types';
 
     // Props
     export let hover: boolean = false;
-    export let type: Maybe<BrandColorKey | FunctionalColorKey> = null;
+    export let type: Nullable<BrandColorKey | FunctionalColorKey> = null;
     export let href: string = '';
     let className: string = '';
     export { className as class };

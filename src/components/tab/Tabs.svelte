@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { Maybe } from '../../utils/maybe.type';
-    import { Size, SizeKey } from '../../utils/size.enum';
-    import { TabsType, TabsTypeKey } from './tabs-type.enum';
+    import { Maybe } from '../../utils../../enums/maybe.typert { Size, SizeKey } from '../../e../../enums/size.enumimport { TabsType, TabsTypeKey } from './tabs-type.enum';
 
     // Props
     export let type: Maybe<TabsTypeKey> = null;

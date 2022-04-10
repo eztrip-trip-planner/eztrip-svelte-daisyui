@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { Maybe } from '../../../utils/maybe.type';
-    import { Size, SizeKey } from '../../../utils/size.enum';
+    import { Size, type SizeKey } from '$enums';
+    import type { Nullable } from '@eztrip/types';
 
     // Props
-    export let size: Maybe<SizeKey> = null;
+    export let size: Nullable<SizeKey> = null;
     let className: string = '';
     export { className as class };
 

@@ -1,29 +1,15 @@
 {
     "compilerOptions": {
-        "lib": ["ESNext", "DOM"],
         "moduleResolution": "Node",
-        "target": "ESNext",
-
+        "target": "ES2017",
+        "importsNotUsedAsValues": "error",
+        "preserveValueImports": true,
+        "isolatedModules": true,
+        "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "alwaysStrict": true,
-        "allowUnusedLabels": false,
-        "allowUnreachableCode": false,
-        "exactOptionalPropertyTypes": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitOverride": true,
-        "noImplicitReturns": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noUncheckedIndexedAccess": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "importsNotUsedAsValues": "error",
-        "checkJs": true,
-        "useDefineForClassFields": true,
-
-        "sourceMap": true
+        "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/**/*.svelte"]
+    "include": ["src/**/*", "types/**/*"]
 }

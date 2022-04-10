@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { Maybe } from '../../utils/maybe.type';
+    import type { Nullable } from '@eztrip/types';
 
-    export let href: Maybe<string> = null;
+    export let href: Nullable<string> = null;
     let className: string = '';
     export { className as class };
 

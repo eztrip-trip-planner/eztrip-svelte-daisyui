@@ -1,6 +1,10 @@
 <script lang="ts">
-    import { HorizontalAlignment, HorizontalAlignmentKey } from '../../utils/horizontal-align.enum';
-    import { VerticalAlignment, VerticalAlignmentKey } from '../../utils/vertical-align.enum';
+    import {
+        HorizontalAlignment,
+        VerticalAlignment,
+        type HorizontalAlignmentKey,
+        type VerticalAlignmentKey,
+    } from '$enums';
 
     // Props
     export let horizontalAlign: HorizontalAlignmentKey = 'End';

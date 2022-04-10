@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { Maybe } from '../../utils/maybe.type';
-    import { SwapAnim, SwapAnimKey } from './swap-anim.enum';
+    import type { Nullable } from '@eztrip/types';
+    import { SwapAnim, type SwapAnimKey } from './swap-anim.enum';
 
     // Props
-    export let anim: Maybe<SwapAnimKey> = null;
+    export let anim: Nullable<SwapAnimKey> = null;
     // export let onSwap: Maybe<(state: boolean) => void> = null;
     export let state: boolean = false;
     let className: string = '';

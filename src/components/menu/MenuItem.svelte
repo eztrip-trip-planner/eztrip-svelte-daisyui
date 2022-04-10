@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { Maybe } from '../../utils/maybe.type';
+    import type { Nullable } from '@eztrip/types';
 
-    // Props
-    export let href: Maybe<string> = null;
+    export let href: Nullable<string> = null;
     export let active: boolean = false;
     export let disabled: boolean = false;
     let className: string = '';
