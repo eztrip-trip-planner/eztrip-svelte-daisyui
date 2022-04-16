@@ -6,8 +6,8 @@ const withOpacityValue = (variable) => {
     };
 };
 
-module.exports = {
-    content: ['./src/**/*.{svelte,ts,js,css,sass,scss}'],
+export default {
+    content: ['./src/**/*.{js,svelte,ts}'],
     theme: {
         extend: {
             colors: {

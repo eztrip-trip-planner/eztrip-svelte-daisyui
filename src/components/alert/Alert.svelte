@@ -7,7 +7,7 @@
     import type { SvelteComponent } from 'svelte';
     import { BrandColor, type BrandColorKey } from '$components/utils/brand-color.enum';
     import { FunctionalColor, type FunctionalColorKey } from '$components/utils/functional-color.enum';
-    import Icon from '../icon/Icon.svelte';
+    import Icon from '../display/icon/Icon.svelte';
 
     // Props
     export let message: Maybe<string> = null;

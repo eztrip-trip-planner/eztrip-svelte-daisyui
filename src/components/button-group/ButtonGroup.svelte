@@ -14,6 +14,6 @@
     <slot />
 </div>
 
-<style lang="less">
-    @import 'ButtonGroup.less';
+<style lang="scss">
+    @import 'ButtonGroup.scss';
 </style>

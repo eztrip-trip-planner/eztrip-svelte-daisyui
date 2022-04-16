@@ -1,5 +1,5 @@
 /// <reference types="svelte" />
-import { SvelteComponentTyped } from "svelte";
+import type { SvelteComponentTyped } from "svelte";
 
 export type BrandColor = "primary" | "secondary" | "accent";
 
@@ -62,7 +62,7 @@ export interface ButtonProps {
   /**
    * @default null
    */
-  class?: import("../utils").Nullable<string>;
+  class?: import("@eztrip/types").Nullable<string>;
 }
 
 export default class Button extends SvelteComponentTyped<
