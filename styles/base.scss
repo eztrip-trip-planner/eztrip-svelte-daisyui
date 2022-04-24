@@ -1,0 +1,9 @@
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root,
+[data-theme] {
+    background-color: hsla(var(--base-100) / var(--tw-bg-opacity, 1));
+    color: hsla(var(--base-content) / var(--tw-text-opacity, 1));
+}

@@ -1,12 +1,28 @@
-const withOpacityValue = (variable) => {
-    return ({ opacityValue }) => {
+import type { TailwindConfig as TC } from 'tailwindcss/tailwind-config';
+
+/**
+ * Creates hsl color with the specified variable.
+ * @param {string} variable Variable name.
+ * @returns {string} HSL color with opacity or without opacity.
+ */
+function withOpacityValue(variable: string) {
+    return ({
+        opacityVariable,
+        opacityValue,
+    }: {
+        opacityVariable: string;
+        opacityValue: string;
+    }) => {
         if (!opacityValue) return `hsl(var(${variable}))`;
 
         return `hsl(var(${variable}) / ${opacityValue})`;
     };
-};
+}
 
-export default {
+/**
+ * Tailwind config.
+ */
+export const TailwindConfig: TC = {
     content: ['./src/**/*.{js,svelte,ts}'],
     theme: {
         extend: {

@@ -2,44 +2,58 @@
     "name": "@eztrip/svelte-daisyui",
     "version": "1.0.0",
     "type": "module",
-    "svelte": "./dist/ltr/index.js",
-    "main": "./dist/ltr/index.js",
-    "types": "./types/index.d.ts",
-    "files": [
-        "dist",
-        "src",
-        "types"
-    ],
-    "bin": {
-        "daisyui": "./bin/daisyui.js"
+    "svelte": "./dist/main/index.js",
+    "main": "./dist/main/index.js",
+    "types": "./dist/main/index.d.ts",
+    "exports": {
+        ".": "./dist/main/index.js",
+        "./ltr": "./dist/main/index.js",
+        "./rtl": "./dist/rtl/index.js",
+        "./plugin": "./dist/plugin/index.js"
     },
+    "files": [
+        "./dist/main/index.js",
+        "./dist/main/index.d.ts",
+        "./dist/rtl/index.js",
+        "./dist/rtl/index.d.ts",
+        "./dist/plugin/index.js",
+        "./dist/plugin/index.d.ts"
+    ],
     "scripts": {
+        "clear": "rm -r ./dist",
         "lint": "eslint src/**/*.ts",
         "lint:fix": "eslint src/**/*.ts --fix",
-        "build:components": "daisyui --build",
-        "watch:components": "daisyui --watch",
-        "build:plugin": "",
-        "watch:plugin": ""
+        "build:components": "./daisyui/processor.js ./src/components --mode=build --output=./dist",
+        "watch:components": "./daisyui/processor.js ./src/components --mode=watch --output=./dist",
+        "types:components": "./daisyui/processor.js ./src/components/index.js --mode=types --output=./types/index.d.ts",
+        "build:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.js --bundle --minify --format=cjs",
+        "watch:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.js --bundle --watch  --format=cjs",
+        "types:plugin": "",
+        "build": "pnpm clear && pnpm run build:components && pnpm run build:plugin",
+        "build:processor": "esbuild ./src/processor/index.ts --outfile=./daisyui/processor.js --bundle --platform=node --external:./node_modules/* --format=esm --sourcemap",
+        "watch:processor": "esbuild ./src/processor/index.ts --outfile=./daisyui/processor.js --bundle --platform=node --external:./node_modules/* --watch --format=esm --sourcemap"
     },
     "dependencies": {
         "chokidar": "^3.5.3",
-        "colord": "^2.9.2",
-        "esbuild": "^0.14.36",
-        "joi": "^17.6.0"
+        "minimist": "^1.2.6"
     },
     "devDependencies": {
         "@eztrip/types": "workspace:^1.0.0",
+        "@types/minimist": "^1.2.2",
+        "@types/rtlcss": "^3.1.4",
         "@types/tailwindcss": "^3.0.10",
         "autoprefixer": "^10.4.4",
+        "esbuild": "^0.14.37",
         "eslint": "^8.13.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-svelte3": "^3.4.1",
         "postcss": "^8.4.12",
         "rtlcss": "^3.5.0",
-        "sass": "^1.50.0",
-        "sveld": "^0.14.1",
+        "sass": "^1.50.1",
+        "sveld": "^0.15.0",
         "svelte": "^3.47.0",
-        "tailwindcss": "^3.0.23"
+        "tailwindcss": "^3.0.24",
+        "typescript": "^4.6.3"
     },
     "repository": {
         "type": "git",
