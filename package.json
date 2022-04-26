@@ -9,51 +9,62 @@
         ".": "./dist/main/index.js",
         "./ltr": "./dist/main/index.js",
         "./rtl": "./dist/rtl/index.js",
-        "./plugin": "./dist/plugin/index.js"
+        "./plugin": "./dist/plugin/index.cjs"
     },
     "files": [
         "./dist/main/index.js",
         "./dist/main/index.d.ts",
         "./dist/rtl/index.js",
         "./dist/rtl/index.d.ts",
-        "./dist/plugin/index.js",
+        "./dist/plugin/index.cjs",
         "./dist/plugin/index.d.ts"
     ],
     "scripts": {
         "clear": "rm -r ./dist",
         "lint": "eslint src/**/*.ts",
         "lint:fix": "eslint src/**/*.ts --fix",
+        "build:styles": "./daisyui/processor.js ./styles --output ./dist",
         "build:components": "./daisyui/processor.js ./src/components --mode=build --output=./dist",
         "watch:components": "./daisyui/processor.js ./src/components --mode=watch --output=./dist",
         "types:components": "./daisyui/processor.js ./src/components/index.js --mode=types --output=./types/index.d.ts",
-        "build:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.js --bundle --minify --format=cjs",
-        "watch:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.js --bundle --watch  --format=cjs",
-        "types:plugin": "",
+        "build:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.cjs --bundle --format=cjs",
+        "watch:plugin": "esbuild ./src/plugin/index.ts --outfile=./dist/plugin/index.cjs --bundle --platform=node --watch --external:./node_modules/* --format=cjs",
+        "types:plugin": "dts-bundle-generator -o ./types/plugin.d.ts ./src/plugin/index.ts",
         "build": "pnpm clear && pnpm run build:components && pnpm run build:plugin",
         "build:processor": "esbuild ./src/processor/index.ts --outfile=./daisyui/processor.js --bundle --platform=node --external:./node_modules/* --format=esm --sourcemap",
         "watch:processor": "esbuild ./src/processor/index.ts --outfile=./daisyui/processor.js --bundle --platform=node --external:./node_modules/* --watch --format=esm --sourcemap"
     },
     "dependencies": {
-        "chokidar": "^3.5.3",
-        "minimist": "^1.2.6"
+        "color": "^4.2.3",
+        "joi": "^17.6.0"
     },
     "devDependencies": {
         "@eztrip/types": "workspace:^1.0.0",
+        "@rollup/plugin-commonjs": "^22.0.0",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^13.2.1",
+        "@rollup/plugin-typescript": "^8.3.2",
+        "@types/color": "^3.0.3",
         "@types/minimist": "^1.2.2",
         "@types/rtlcss": "^3.1.4",
         "@types/tailwindcss": "^3.0.10",
         "autoprefixer": "^10.4.5",
+        "chokidar": "^3.5.3",
+        "dts-bundle-generator": "^6.8.0",
         "esbuild": "^0.14.38",
         "eslint": "^8.14.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-svelte3": "^3.4.1",
+        "jss": "^10.9.0",
+        "minimist": "^1.2.6",
         "postcss": "^8.4.12",
+        "rollup": "^2.70.2",
+        "rollup-plugin-node-externals": "^4.0.0",
         "rtlcss": "^3.5.0",
         "sass": "^1.50.1",
         "sveld": "^0.15.0",
         "svelte": "^3.47.0",
-        "tailwindcss": "^3.0.24",
-        "typescript": "^4.6.3"
+        "tailwindcss": "^3.0.24"
     },
     "repository": {
         "type": "git",

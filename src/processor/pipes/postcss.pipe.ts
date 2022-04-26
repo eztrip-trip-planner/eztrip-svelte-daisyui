@@ -1,4 +1,4 @@
-import { Pipe, PipeData } from './pipe';
+import { Pipe, type PipeData } from './pipe';
 import postcss, { type AcceptedPlugin } from 'postcss';
 
 export class PostCssPipe extends Pipe {

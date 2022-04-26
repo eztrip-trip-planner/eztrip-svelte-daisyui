@@ -5,14 +5,11 @@ import { SassPipe } from '../pipes/sass.pipe';
 import { SveltePipe } from '../pipes/svelte.pipe';
 import { Processor } from './processor';
 import tailwindcss from 'tailwindcss';
-import { TailwindConfig } from '../../configs/tailwind.config';
+import { TAILWIND_CONFIG } from '../../configs/tailwind.config';
 import autoprefixer from 'autoprefixer';
 import type { AddPipelineFunction } from './types/add-pipeline-function.type';
 import type { AddPipelineEventFunction } from './types/add-pipeline-event-function.type';
 
-/**
- * Processor for building the daisyUI components.
- */
 export class BuildProcessor extends Processor {
     public setupPipelines(add: AddPipelineFunction): void {
         add('svelte', [new SveltePipe()], ['.svelte']);
@@ -21,7 +18,7 @@ export class BuildProcessor extends Processor {
             'css',
             [
                 new SassPipe(),
-                new PostCssPipe(tailwindcss(TailwindConfig), autoprefixer()),
+                new PostCssPipe(tailwindcss(TAILWIND_CONFIG), autoprefixer()),
             ],
             ['.scss', '.sass'],
             '.css',
@@ -30,7 +27,7 @@ export class BuildProcessor extends Processor {
             'rtlcss',
             [
                 new SassPipe(),
-                new PostCssPipe(tailwindcss(TailwindConfig), autoprefixer()),
+                new PostCssPipe(tailwindcss(TAILWIND_CONFIG), autoprefixer()),
                 new RtlCssPipe(),
             ],
             ['.scss', '.sass'],
@@ -43,10 +40,10 @@ export class BuildProcessor extends Processor {
         for (const filePath of files) await this.process(filePath);
     }
 
-    public setupEvents(add: AddPipelineEventFunction): void {
+    public setupPipelineEvents(add: AddPipelineEventFunction): void {
         add(['svelte', 'javascript'], async (data) => {
-            const { transformed, processedSource, output } = data;
-            const { filePathWithoutInput } = transformed;
+            const { transformed, output } = data;
+            const { filePathWithoutInput, source } = transformed;
 
             const mainOutputPath = this.file.join(
                 output,
@@ -59,13 +56,12 @@ export class BuildProcessor extends Processor {
                 filePathWithoutInput,
             );
 
-            this.file.write(mainOutputPath, processedSource);
-            this.file.write(rtlOutputPath, processedSource);
+            this.file.write(mainOutputPath, source);
+            this.file.write(rtlOutputPath, source);
         });
-
         add(['css'], async (data) => {
-            const { transformed, processedSource, output } = data;
-            const { filePathWithoutInput } = transformed;
+            const { transformed, output } = data;
+            const { filePathWithoutInput, source } = transformed;
 
             const mainOutputPath = this.file.join(
                 output,
@@ -73,12 +69,11 @@ export class BuildProcessor extends Processor {
                 filePathWithoutInput,
             );
 
-            this.file.write(mainOutputPath, processedSource);
+            this.file.write(mainOutputPath, source);
         });
-
         add(['rtlcss'], async (data) => {
-            const { transformed, processedSource, output } = data;
-            const { filePathWithoutInput } = transformed;
+            const { transformed, output } = data;
+            const { filePathWithoutInput, source } = transformed;
 
             const rtlOutputPath = this.file.join(
                 output,
@@ -86,7 +81,7 @@ export class BuildProcessor extends Processor {
                 filePathWithoutInput,
             );
 
-            this.file.write(rtlOutputPath, processedSource);
+            this.file.write(rtlOutputPath, source);
         });
     }
 }

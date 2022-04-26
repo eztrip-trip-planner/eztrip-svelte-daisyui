@@ -1,5 +1,5 @@
-import chokidar from 'chokidar';
 import { BuildProcessor } from './build.processor';
+import chokidar from 'chokidar';
 
 export class WatchProcessor extends BuildProcessor {
     public override async start(input: string): Promise<void> {

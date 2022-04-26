@@ -1,5 +1,5 @@
 import type { Constructor } from '@eztrip/types';
-import { File } from '../file';
+import { File } from '../../utils/file';
 import { Pipeline } from '../pipes/pipeline';
 import minimist from 'minimist';
 import type { Pipe } from '../pipes/pipe';
@@ -9,29 +9,14 @@ import type { AddPipelineEventFunction } from './types/add-pipeline-event-functi
 
 type ProcessorConstructor = Constructor<Processor, [string, string]>;
 
-/**
- * Processor mode.
- */
 export abstract class Processor {
-    /**
-     * Modes.
-     */
     private static readonly modes: Map<string, ProcessorConstructor> =
         new Map();
 
-    /**
-     * Registers a mode class for the given name.
-     * @param name Name of the mode.
-     * @param mode Mode class.
-     */
     public static register(name: string, mode: ProcessorConstructor): void {
         Processor.modes.set(name, mode);
     }
 
-    /**
-     * Parses the command line arguments.
-     * @returns The parsed arguments.
-     */
     public static parseArgv() {
         const args = minimist(process.argv.slice(2), {
             alias: {
@@ -47,9 +32,6 @@ export abstract class Processor {
         return args;
     }
 
-    /**
-     * Starts the mode.
-     */
     public static start(): void {
         const args = Processor.parseArgv();
 
@@ -59,25 +41,15 @@ export abstract class Processor {
         const mode = new ModeClass(args._[0], args.output);
         if (mode.setupPipelines)
             mode.setupPipelines(mode.addPipeline.bind(mode));
-        if (mode.setupEvents)
-            mode.setupEvents(mode.subscribePipeline.bind(mode));
+        if (mode.setupPipelineEvents)
+            mode.setupPipelineEvents(mode.subscribePipeline.bind(mode));
         mode.start(mode.input, mode.output);
     }
 
-    /**
-     * File instance.
-     */
-    protected readonly file: File = File.getInstance();
-
-    /**
-     * Set of pipelines.
-     */
+    protected readonly file: File = new File();
     private readonly pipelines: Map<string, Array<Pipeline>> = new Map();
-
     private readonly events: Map<string, PipelineEventFunction> = new Map();
-
     private readonly input: string;
-
     private readonly output: string;
 
     public constructor(input: string, output: string) {
@@ -85,12 +57,6 @@ export abstract class Processor {
         this.output = this.file.normalize(output);
     }
 
-    /**
-     * Adds a pipeline to the processor.
-     * @param name Name of the pipeline.
-     * @param extensions Extensions that the pipeline supports.
-     * @param pipes Array of pipes.
-     */
     private addPipeline(
         name: string,
         pipes: ReadonlyArray<Pipe>,
@@ -135,7 +101,6 @@ export abstract class Processor {
                 input: this.input,
                 output: this.output,
                 source,
-                processedSource,
                 filePath,
                 filePathWithoutInput,
                 fileName,
@@ -146,22 +111,15 @@ export abstract class Processor {
                         '',
                     ),
                     fileName: this.file.getName(transformedFilePath),
+                    source: processedSource,
                 },
             });
         }
     }
 
-    /**
-     * Setups the pipelines.
-     */
     public setupPipelines?(add: AddPipelineFunction): void;
 
-    public setupEvents?(add: AddPipelineEventFunction): void;
+    public setupPipelineEvents?(add: AddPipelineEventFunction): void;
 
-    /**
-     * Starts the mode.
-     * @param input Input directory.
-     * @param output Output directory.
-     */
     public abstract start(input: string, output: string): Promise<void>;
 }

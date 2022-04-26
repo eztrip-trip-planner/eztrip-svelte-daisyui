@@ -1,4 +1,4 @@
-import { Pipe, PipeData } from './pipe';
+import { Pipe, type PipeData } from './pipe';
 import sass from 'sass';
 
 export class SassPipe extends Pipe {

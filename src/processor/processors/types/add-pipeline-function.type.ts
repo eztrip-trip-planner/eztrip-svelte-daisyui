@@ -1,4 +1,4 @@
-import type { Pipe } from '../pipes/pipe';
+import type { Pipe } from '../../pipes/pipe';
 
 export type AddPipelineFunction = (
     name: string,
