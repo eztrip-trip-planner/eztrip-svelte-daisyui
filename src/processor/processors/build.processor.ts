@@ -1,6 +1,6 @@
 import { JavascriptPipe } from '../pipes/javascript.pipe';
 import { PostCssPipe } from '../pipes/postcss.pipe';
-import { RtlCssPipe } from '../pipes/rtlcss.pipe';
+// import { RtlCssPipe } from '../pipes/rtlcss.pipe';
 import { SassPipe } from '../pipes/sass.pipe';
 import { SveltePipe } from '../pipes/svelte.pipe';
 import { Processor } from './processor';
@@ -23,16 +23,16 @@ export class BuildProcessor extends Processor {
             ['.scss', '.sass'],
             '.css',
         );
-        add(
-            'rtlcss',
-            [
-                new SassPipe(),
-                new PostCssPipe(tailwindcss(TAILWIND_CONFIG), autoprefixer()),
-                new RtlCssPipe(),
-            ],
-            ['.scss', '.sass'],
-            '.css',
-        );
+        // add(
+        //     'rtlcss',
+        //     [
+        //         new SassPipe(),
+        //         new PostCssPipe(tailwindcss(TAILWIND_CONFIG), autoprefixer()),
+        //         new RtlCssPipe(),
+        //     ],
+        //     ['.scss', '.sass'],
+        //     '.css',
+        // );
     }
 
     public async start(input: string): Promise<void> {
@@ -47,41 +47,37 @@ export class BuildProcessor extends Processor {
 
             const mainOutputPath = this.file.join(
                 output,
-                'main',
+                // 'main',
                 filePathWithoutInput,
             );
-            const rtlOutputPath = this.file.join(
-                output,
-                'rtl',
-                filePathWithoutInput,
-            );
+            // const rtlOutputPath = this.file.join(
+            //     output,
+            //     'rtl',
+            //     filePathWithoutInput,
+            // );
 
             this.file.write(mainOutputPath, source);
-            this.file.write(rtlOutputPath, source);
+            // this.file.write(rtlOutputPath, source);
         });
         add(['css'], async (data) => {
             const { transformed, output } = data;
             const { filePathWithoutInput, source } = transformed;
 
-            const mainOutputPath = this.file.join(
-                output,
-                'main',
-                filePathWithoutInput,
-            );
+            const mainOutputPath = this.file.join(output, filePathWithoutInput);
 
             this.file.write(mainOutputPath, source);
         });
-        add(['rtlcss'], async (data) => {
-            const { transformed, output } = data;
-            const { filePathWithoutInput, source } = transformed;
+        // add(['rtlcss'], async (data) => {
+        //     const { transformed, output } = data;
+        //     const { filePathWithoutInput, source } = transformed;
 
-            const rtlOutputPath = this.file.join(
-                output,
-                'rtl',
-                filePathWithoutInput,
-            );
+        //     const rtlOutputPath = this.file.join(
+        //         output,
+        //         'rtl',
+        //         filePathWithoutInput,
+        //     );
 
-            this.file.write(rtlOutputPath, source);
-        });
+        //     this.file.write(rtlOutputPath, source);
+        // });
     }
 }

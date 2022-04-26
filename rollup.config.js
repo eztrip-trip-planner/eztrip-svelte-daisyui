@@ -12,5 +12,11 @@ export default {
         format: 'cjs',
         exports: 'auto',
     },
-    plugins: [externals(), nodeResolve(), commonjs(), json(), typescript()],
+    plugins: [
+        externals(),
+        nodeResolve(),
+        commonjs(),
+        json(),
+        typescript({ tsconfig: './tsconfig/tsconfig.plugin.json' }),
+    ],
 };

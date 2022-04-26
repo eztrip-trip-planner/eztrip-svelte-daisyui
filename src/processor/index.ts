@@ -7,7 +7,7 @@ import { StylesProcessor } from './processors/styles.processor';
 
 Processor.register('build', BuildProcessor);
 Processor.register('watch', WatchProcessor);
-Processor.register('styles', TypesProcessor);
-Processor.register('types', StylesProcessor);
+Processor.register('types', TypesProcessor);
+Processor.register('styles', StylesProcessor);
 
 Processor.start();
